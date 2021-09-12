@@ -4,7 +4,6 @@ using Player = Exiled.Events.Handlers.Player;
 using Exiled.Loader;
 using System;
 using YamlDotNet.Serialization;
-using System.IO;
 using System.Collections.Generic;
 
 namespace LeftHandedPlayers
@@ -15,7 +14,7 @@ namespace LeftHandedPlayers
         public static LeftHandedPlayers Instance => Singleton;
         public override string Author => "TemmieGamerGuy";
         public override string Name => "LeftHandedPlayers";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 0, 1);
         public override Version RequiredExiledVersion => new Version(3, 0, 0);
 
         internal static string DataPath;

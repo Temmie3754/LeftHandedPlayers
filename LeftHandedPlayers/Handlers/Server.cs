@@ -27,6 +27,7 @@ namespace LeftHandedPlayers.Handlers
                 LeftHandedPlayers.Instance.DataSaver.Serialize(writer, LeftHandedPlayers.Instance.LeftHandList);
             }
         }
+
         public void OnWaitingForPlayers()
         {
             // Loads the list of left-handed players

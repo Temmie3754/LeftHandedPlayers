@@ -20,10 +20,10 @@ namespace LeftHandedPlayers.Commands
             Player player = Player.Get((PlayerCommandSender)sender);
 
             // Ensures they are not left handed before applying the change
-            if (player.Scale == new UnityEngine.Vector3(1, 1, 1))
+            if (player.Scale.x > 0)
             {
                 // Applies the left hand change
-                player.Scale = new UnityEngine.Vector3(-1, 1, 1);
+                player.Scale = UnityEngine.Vector3.Scale(player.Scale, new UnityEngine.Vector3(-1, 1, 1));
 
                 // Checks the player does not have DNT on before adding them to the saved list of left handed players
                 if (!player.DoNotTrack) LeftHandedPlayers.Instance.LeftHandList.Add(player.UserId);
@@ -38,7 +38,7 @@ namespace LeftHandedPlayers.Commands
             else
             {
                 // Makes the player no longer appear left handed
-                player.Scale = new UnityEngine.Vector3(1, 1, 1);
+                player.Scale = UnityEngine.Vector3.Scale(player.Scale, new UnityEngine.Vector3(-1, 1, 1));
 
                 // Adds them to the removal list if they don't have DNT on and removes from left handed list if on it
                 if (!player.DoNotTrack) LeftHandedPlayers.Instance.ToRemoveList.Add(player.UserId);
@@ -48,8 +48,6 @@ namespace LeftHandedPlayers.Commands
                 response = "You are no longer left handed";
                 return true;
             }
-
-            
         }
     }
 }
