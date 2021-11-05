@@ -5,6 +5,7 @@ using Exiled.Loader;
 using System;
 using YamlDotNet.Serialization;
 using System.Collections.Generic;
+using System.IO;
 
 namespace LeftHandedPlayers
 {
@@ -33,6 +34,7 @@ namespace LeftHandedPlayers
             Server.RoundEnded += server.OnRoundEnded;
             Server.WaitingForPlayers += server.OnWaitingForPlayers;
             Player.Verified += player.OnVerified;
+            Player.ChangingItem += player.OnChangingItem;
         }
 
         public void UnregisterEvents()
@@ -40,6 +42,7 @@ namespace LeftHandedPlayers
             Server.RoundEnded -= server.OnRoundEnded;
             Server.WaitingForPlayers -= server.OnWaitingForPlayers;
             Player.Verified -= player.OnVerified;
+            Player.ChangingItem -= player.OnChangingItem;
             server = null;
             player = null;
         }
@@ -47,7 +50,7 @@ namespace LeftHandedPlayers
         public override void OnEnabled()
         {
             Singleton = this;
-            DataPath = Paths.Configs + "/" + "LeftHandedData.yml";
+            DataPath = Path.Combine(Paths.Configs, "LeftHandedData.yml");
             DataLoader = Loader.Deserializer;
             DataSaver = Loader.Serializer;
             ToRemoveList = new List<string>();
